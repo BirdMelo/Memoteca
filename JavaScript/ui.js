@@ -36,6 +36,9 @@ const ui = {
         thoughtList.append(li)
 
 
+    },
+    formClear(){
+        document.querySelector('#pensamento-form').reset()
     }
 }
 
