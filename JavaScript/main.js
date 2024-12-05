@@ -16,7 +16,11 @@ async function manipulateSubmit(event) {
     const autoria = document.querySelector('#pensamento-autoria').value
 
     try {
-        await api.salveThought({ conteudo, autoria })
+        if(id){
+            await api.editeThought({ id, conteudo, autoria })
+        }else {
+            await api.salveThought({ conteudo, autoria })
+        }
         ui.renderizeThought()
     } catch {
         alert('Ocorreu um erro ao salvar os pensamentos')

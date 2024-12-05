@@ -64,6 +64,16 @@
       "id": "4d2e",
       "conteudo": "Se eu for aí e achar, eu esfrego na sua cara!",
       "autoria": "Mãe"
+    },
+    {
+      "id": "2433",
+      "conteudo": "pensamento teste 2",
+      "autoria": "João Pedro de Melo"
+    },
+    {
+      "id": "4386",
+      "conteudo": "Já limpou o cache do navegador?",
+      "autoria": "Dev"
     }
   ]
 }
