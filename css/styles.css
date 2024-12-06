@@ -282,3 +282,15 @@ span {
   background: #041832;
   margin: 96px 0 48px 0;
 }
+#emptyList {
+  display: grid;
+  row-gap: 32px;
+}
+#emptyList p {
+  color: var(--Azul-Dark);
+  font-size: 22px;
+  text-align: center;
+}
+#emptyList img {
+  justify-self: center;
+}

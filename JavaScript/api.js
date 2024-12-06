@@ -1,7 +1,9 @@
+const DATA_BASE = 'http://localhost:3000'
+
 const api = {
     async searchThoughts() {
         try {
-            const response = await fetch('http://localhost:3000/pensamentos')
+            const response = await fetch(`${DATA_BASE}/pensamentos`)
             return await response.json()
         }catch {
             alert('Erro ao buscar pensamentos')
@@ -10,7 +12,7 @@ const api = {
     },
     async salveThought(thought) {
         try {
-            const response = await fetch('http://localhost:3000/pensamentos', {
+            const response = await fetch(`${DATA_BASE}/pensamentos`, {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json"
@@ -25,7 +27,7 @@ const api = {
     },
     async searchThoughtByID(id) {
         try {
-            const response = await fetch(`http://localhost:3000/pensamentos/${id}`)
+            const response = await fetch(`${DATA_BASE}/pensamentos/${id}`)
             return await response.json()
         }catch {
             alert('Erro ao buscar pensamento')
@@ -34,7 +36,7 @@ const api = {
     },
     async editeThought(thought) {
         try {
-            const response = await fetch(`http://localhost:3000/pensamentos/${thought.id}`, {
+            const response = await fetch(`${DATA_BASE}/pensamentos/${thought.id}`, {
                 method: "PUT",
                 headers: {
                     "Content-Type": "application/json"
@@ -44,6 +46,14 @@ const api = {
             return await response.json()
         } catch {
             alert('Erro ao editar o pensamento')
+            throw error
+        }
+    },
+    async deleteThought(id) {
+        try {
+            const response = await fetch(`${DATA_BASE}/pensamentos/${id}`, { method: "DELETE" })
+        } catch {
+            alert('Erro ao excluir o pensamento')
             throw error
         }
     }

@@ -11,10 +11,15 @@ const ui = {
 
     async renderizeThought(){
         const thoughtList = document.querySelector('#lista-pensamentos')
-
+        thoughtList.innerHTML = ''
         try {
             const thoughts = await api.searchThoughts()
-            thoughts.forEach(ui.addThoughtOnList);
+            if(thoughts.length > 0){
+                ui.emptyList(false)
+                thoughts.forEach(ui.addThoughtOnList);
+            } else {
+                ui.emptyList(true)
+            }
         } catch {
             alert('Erro ao rederizar pensamentos')
         }
@@ -45,12 +50,27 @@ const ui = {
         editeButton.onclick = () => ui.filloutForm(thought.id)
         const editeIcon = document.createElement('img')
         editeIcon.src = '../assets/imagens/icone-editar.png'
-        editeIcon.alt = 'icone editar'
+        editeIcon.alt = 'editar'
         editeButton.append(editeIcon)
+
+        const deleteButton = document.createElement('button')
+        deleteButton.classList.add('botao-excluir')
+        deleteButton.onclick = async () => {
+            try {
+                await api.deleteThought(thought.id)
+                ui.renderizeThought()
+            } catch {
+                alert('Erro ao excluir pensamento')
+            }
+        }
+        const deleteIcon = document.createElement('img')
+        deleteIcon.src = '../assets/imagens/icone-excluir.png'
+        deleteIcon.alt = 'deletar'
+        deleteButton.append(deleteIcon)
 
         const iconsButtons = document.createElement('div')
         iconsButtons.classList.add('icones')
-        iconsButtons.append(editeButton)
+        iconsButtons.append(editeButton, deleteButton)
         
         li.append(iconAspas, content_div, autoria_div,iconsButtons)
         thoughtList.append(li)
@@ -58,6 +78,14 @@ const ui = {
     },
     formClear(){
         document.querySelector('#pensamento-form').reset()
+    },
+    emptyList(toggle){
+        const emptyDiv = document.getElementById('emptyList')
+        if(toggle === true) {
+            emptyDiv.style.display = 'grid'
+        }else if (toggle === false){
+            emptyDiv.style.display = 'none'
+        }
     }
 }
 
