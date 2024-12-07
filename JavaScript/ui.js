@@ -5,7 +5,7 @@ const ui = {
     async filloutForm(thoughtID){
         const thought = await api.searchThoughtByID(thoughtID)
         document.getElementById('pensamento-id').value = thought.id
-        document.getElementById('pensamento-conteudo').value = thought.conteudo
+        document.getElementById('pensamento-conteudo').value = thought.conteudo.trim()
         document.getElementById('pensamento-autoria').value = thought.autoria
     },
 

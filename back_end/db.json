@@ -1,3 +1,19 @@
 {
-  "pensamentos": []
+  "pensamentos": [
+    {
+      "id": "6b90",
+      "conteudo": "Olá, turma",
+      "autoria": "Professor"
+    },
+    {
+      "id": "5e0f",
+      "conteudo": "busque comer cimento",
+      "autoria": "ET Bilu"
+    },
+    {
+      "id": "188b",
+      "conteudo": "Fiz um CRUD no meu projeto javascript",
+      "autoria": "João Pedro de Melo"
+    }
+  ]
 }
