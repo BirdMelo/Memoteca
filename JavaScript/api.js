@@ -124,6 +124,14 @@ const api = {
             throw error
         }
         
+    },
+    async updateFavorite(id, favorito) {
+        try {
+            const response = await axios.patch(`${DATA_BASE}/pensamentos/${id}`, { favorito })
+            return response.data
+        } catch (error) {
+            alert('Erro ao atualizar favorito')
+        }
     }
 }
 export default api

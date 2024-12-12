@@ -74,9 +74,27 @@ const ui = {
         deleteIcon.alt = 'deletar'
         deleteButton.append(deleteIcon)
 
+        const favoriteButton = document.createElement('button')
+        favoriteButton.classList.add('botao-favorito')
+        favoriteButton.onclick = async () => {
+            try {
+                await api.updateFavorite(thought.id, !thought.favorito)
+                ui.renderizeThought()
+            } catch (error) {
+                alert('Erro ao atualizar pensamento para favorito')
+            }
+        }
+        const favoriteIcon = document.createElement('img')
+        favoriteIcon.src = thought.favorito ? 
+        '../assets/imagens/favorite.svg' : 
+        '../assets/imagens/favorite_outline.png'
+        favoriteIcon.alt = 'marcar como favorito'
+        favoriteButton.append(favoriteIcon)
+
+
         const iconsButtons = document.createElement('div')
         iconsButtons.classList.add('icones')
-        iconsButtons.append(editeButton, deleteButton)
+        iconsButtons.append(favoriteButton, editeButton, deleteButton)
         
         li.append(iconAspas, content_div, autoria_div,iconsButtons)
         thoughtList.append(li)

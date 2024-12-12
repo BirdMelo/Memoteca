@@ -3,17 +3,20 @@
     {
       "id": "6b90",
       "conteudo": "Olá, turma",
-      "autoria": "Professor"
+      "autoria": "Professor",
+      "favorito": false
     },
     {
       "id": "5e0f",
       "conteudo": "busque comer cimento",
-      "autoria": "ET Bilu"
+      "autoria": "ET Bilu",
+      "favorito": false
     },
     {
       "id": "188b",
       "conteudo": "Fiz um CRUD no meu projeto javascript",
-      "autoria": "João Pedro de Melo"
+      "autoria": "João Pedro de Melo",
+      "favorito": false
     }
   ]
 }
