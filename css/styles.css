@@ -7,6 +7,8 @@
 :root {
   --Baby-blue: #DBE4EF;
   --Azul-Dark: #041832;
+  --Azul-Medio: #144480;
+  --Azul-Neo: #2BDEFD;
   --Cinza-claro: #EDF0F4;
   --Cinza-medio: #8F8F8F;
   --Cinza: #444;
@@ -101,6 +103,20 @@ h2, h3 {
   font-weight: 600;
   line-height: normal;
 }
+#busca-container {
+  display: flex;
+  justify-content: center;
+}
+#campo-busca {
+  padding: 12px;
+  border-radius: 24px;
+  width: 588px;
+  border: solid 1px var(--Azul-Medio);
+  margin-bottom: 15px;
+}
+#campo-busca:focus {
+  outline: solid 1px var(--Azul-Dark);
+}
 
 #form-container {
   display: flex;
@@ -129,7 +145,7 @@ h2, h3 {
   border-radius: 8px;
   background: var(--Cinza-claro, #EDF0F4);
   word-wrap: break-word; 
-  overflow-wrap: break-word; 
+  overflow-wrap: break-word;
 }
 
 #pensamento-conteudo {

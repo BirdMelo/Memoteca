@@ -9,14 +9,20 @@ const ui = {
         document.getElementById('pensamento-autoria').value = thought.autoria
     },
 
-    async renderizeThought(){
+    async renderizeThought(filteredThoughts = null){
         const thoughtList = document.querySelector('#lista-pensamentos')
         thoughtList.innerHTML = ''
         try {
-            const thoughts = await api.searchThoughts()
-            if(thoughts.length > 0){
+            let thoughtsToRenderize
+            if(filteredThoughts) {
+                thoughtsToRenderize = filteredThoughts
+            }else {
+                thoughtsToRenderize = await api.searchThoughts()
+            }
+
+            if(thoughtsToRenderize.length > 0){
                 ui.emptyList(false)
-                thoughts.forEach(ui.addThoughtOnList);
+                thoughtsToRenderize.forEach(ui.addThoughtOnList);
             } else {
                 ui.emptyList(true)
             }

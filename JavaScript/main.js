@@ -7,6 +7,8 @@ document.addEventListener('DOMContentLoaded', () => {
     thoughtForm.addEventListener('submit', manipulateSubmit)
     const cancelForm = document.querySelector('#botao-cancelar')
     cancelForm.addEventListener('click', manipulateCancel)
+    const inputSearch = document.querySelector('#campo-busca')
+    inputSearch.addEventListener('input', manipulateSearch)
 })
 
 async function manipulateSubmit(event) {
@@ -28,4 +30,14 @@ async function manipulateSubmit(event) {
 }
 function manipulateCancel(){
     ui.formClear()
+}
+
+async function manipulateSearch(){
+    const termToSearch = document.getElementById('campo-busca').value
+    try {
+        const filteredThoughts = await api.searchThoughtsByTerm(termToSearch)
+        ui.renderizeThought(filteredThoughts)
+    } catch (error) {
+        alert('Erro ao realizar busca')
+    }
 }

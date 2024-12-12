@@ -105,6 +105,25 @@ const api = {
             alert('Erro ao excluir o pensamento')
             throw error
         }
+    },
+    async searchThoughtsByTerm(term) {
+        try {
+            const thoughts = await this.searchThoughts()
+
+            const filteredThoughts = thoughts.filter(thought => {
+                return (
+                    thought.conteudo.toLowerCase().includes(term.toLowerCase()) 
+                    ||
+                    thought.autoria.toLowerCase().includes(term.toLowerCase())
+                )
+            })
+            return filteredThoughts
+
+        } catch (error) {
+            alert('erro ao filtrar pensamentos')
+            throw error
+        }
+        
     }
 }
 export default api
