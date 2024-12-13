@@ -16,12 +16,17 @@ async function manipulateSubmit(event) {
     const id = document.querySelector('#pensamento-id').value
     const conteudo = document.querySelector('#pensamento-conteudo').value
     const autoria = document.querySelector('#pensamento-autoria').value
+    const data = document.querySelector('#pensamento-data').value
+
+    if(!verificateDate(data)) {
+        alert('Não é permitido datas futuras')
+    }
 
     try {
         if(id){
-            await api.editeThought({ id, conteudo, autoria })
+            await api.editeThought({ id, conteudo, autoria, data })
         }else {
-            await api.salveThought({ conteudo, autoria })
+            await api.salveThought({ conteudo, autoria, data })
         }
         ui.renderizeThought()
     } catch {
@@ -40,4 +45,10 @@ async function manipulateSearch(){
     } catch (error) {
         alert('Erro ao realizar busca')
     }
+}
+
+function verificateDate(data) {
+    const currentDate = new Date()
+    const gotDate = new Date(data)
+    return gotDate <= currentDate
 }
