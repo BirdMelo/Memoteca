@@ -7,6 +7,8 @@ const ui = {
         document.getElementById('pensamento-id').value = thought.id
         document.getElementById('pensamento-conteudo').value = thought.conteudo.trim()
         document.getElementById('pensamento-autoria').value = thought.autoria
+        document.getElementById('pensamento-data').value = thought.data.toISOString().split('T')[0]
+        document.getElementById('form-container').scrollIntoView()
     },
 
     async renderizeThought(filteredThoughts = null){
@@ -50,6 +52,19 @@ const ui = {
         const autoria_div = document.createElement('div')
         autoria_div.classList.add('pensamento-autoria')
         autoria_div.textContent = thought.autoria
+
+        var options = {
+            weekday: 'long',
+            year: 'numeric',
+            month: 'long',
+            day: 'numeric',
+            timeZone: 'UTC'
+        }
+
+        const formateDate = thought.data.toLocaleDateString('pt-BR', options)
+        const date_div = document.createElement('div')
+        date_div.classList.add('pensamento-data')
+        date_div.textContent = formateDate
 
         const editeButton = document.createElement('button')
         editeButton.classList.add('botao-editar')
@@ -96,7 +111,7 @@ const ui = {
         iconsButtons.classList.add('icones')
         iconsButtons.append(favoriteButton, editeButton, deleteButton)
         
-        li.append(iconAspas, content_div, autoria_div,iconsButtons)
+        li.append(iconAspas, content_div, autoria_div, date_div, iconsButtons)
         thoughtList.append(li)
 
     },

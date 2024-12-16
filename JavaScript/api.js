@@ -1,5 +1,9 @@
 const DATA_BASE = 'http://localhost:3000'
 
+const stringToDate = (dateString) => {
+    const [year, month, day] = dateString.split('-')
+    return new Date(Date.UTC(year, month -1, day))
+}
 const api = {
     async searchThoughts() {
         //SEM AXIOS
@@ -14,7 +18,13 @@ const api = {
         //USANDO AXIOS
         try {
             const response = await axios.get(`${DATA_BASE}/pensamentos`)
-            return await response.data
+            const thoughts = await response.data
+            return thoughts.map(thought => {
+                return {
+                    ...thought,
+                    data: new Date(thought.data)
+                }
+            })
         }catch {
             alert('Erro ao buscar pensamentos')
             throw error
@@ -38,7 +48,11 @@ const api = {
 
         //USANDO AXIOS
         try {
-            const response = await axios.post(`${DATA_BASE}/pensamentos`, thought)
+            const date = stringToDate(thought.data)
+            const response = await axios.post(`${DATA_BASE}/pensamentos`, {
+                ...thought,
+                date: date.toISOString()
+            })
             return await response.data
         } catch {
             alert('Erro ao salvar o pensamento')
@@ -58,7 +72,11 @@ const api = {
         //USANDO AXIOS
         try {
             const response = await axios.get(`${DATA_BASE}/pensamentos/${id}`)
-            return await response.data
+            const thought = await response.data
+            return {
+                ...thought,
+                data: new Date(thought.data)
+            }
         }catch {
             alert('Erro ao buscar pensamento')
             throw error
