@@ -62,9 +62,11 @@ const ui = {
         }
 
         const formateDate = thought.data.toLocaleDateString('pt-BR', options)
+        const regexDateFormate = formateDate.replace(/(^\w)/, (match) => 
+            match.toUpperCase())
         const date_div = document.createElement('div')
         date_div.classList.add('pensamento-data')
-        date_div.textContent = formateDate
+        date_div.textContent = regexDateFormate
 
         const editeButton = document.createElement('button')
         editeButton.classList.add('botao-editar')
