@@ -30,17 +30,18 @@
       <section id="form-container">
         <form id="pensamento-form">
           <input type="hidden" id="pensamento-id" />
-          <label for="pensamento-conteudo">Pensamento</label>
-          <textarea id="pensamento-conteudo" placeholder="Digite seu pensamento" required></textarea>
-          <label 
-            for="pensamento-autoria">
-              Autoria ou Fonte
-            </label>
-          <input 
-            type="text" 
-            id="pensamento-autoria" 
-            placeholder="Insira a autoria ou fonte" 
-            required />
+          <label id="textareaLabel" for="pensamento-conteudo">
+            Pensamento
+            <textarea id="pensamento-conteudo" placeholder="Digite seu pensamento" required></textarea>
+            <p class="error"></p>
+            <p id="caracterCountTextArea">0/150</p>
+          </label>
+          <label id="autoriaLabel" for="pensamento-autoria">
+            Autoria ou Fonte
+            <input type="text" id="pensamento-autoria" placeholder="Insira a autoria ou fonte" required />
+            <p class="error"></p>
+            <p id="caracterCountAutoria">0/15</p>
+          </label>
           <label for="pensamento-data">Data</label>
           <input type="date" id="pensamento-data" required>
           <div class="form-botoes">
